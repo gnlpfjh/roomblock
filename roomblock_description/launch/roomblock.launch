@@ -1,6 +1,8 @@
 <launch>
+  <arg name="robot_type" default="roomba_lidar" />
+
   <!-- Robot description file -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find roomblock_description)/robots/$(arg robot_type).urdf.xacro'" />
 
   <!-- Publish joint_state for display -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">

@@ -1,4 +1,7 @@
 <launch>
+  <!-- Robot type for description (prefix in robot folder) -->
+  <arg name="robot_type" default="roomba_lidar" />
+
   <!-- Set true to launch RPLIDAR node -->
   <arg name="launch_rplidar" default="false"/>
 
@@ -24,7 +27,7 @@
   <arg name="simulation" default="false"/>
 
   <!-- Load robot description -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find roomblock_description)/robots/$(arg robot_type).urdf.xacro'" />
 
   <!-- Robot state publisher -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
@@ -32,7 +35,7 @@
   </node>
 
   <!-- RPLIDAR a2 -->
-  <node if="$(arg launch_rplidar)" name="rplidarNode" pkg="ydlidar_ros" type="ydlidar_node">
+  <node if="$(arg launch_rplidar)" name="rplidarNode" pkg="rplidar_ros" type="rplidar_node">
     <param name="serial_port" type="string" value="/dev/rplidar"/>  
     <param name="serial_baudrate" type="int" value="115200"/>
     <param name="frame_id" type="string" value="laser"/>

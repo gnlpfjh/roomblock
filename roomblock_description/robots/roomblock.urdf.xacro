@@ -20,7 +20,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-	<mesh filename="package://roomblock_description/meshes/block.dae"/>
+	      <mesh filename="package://roomblock_description/meshes/block.dae"/>
       </geometry>
       <material name="Grey" />
     </visual>
